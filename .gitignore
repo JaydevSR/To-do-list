@@ -1,5 +1,6 @@
-#vscode
+#editor
 .vscode
+.idea
 
 #python
 __pycache__

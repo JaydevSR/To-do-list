@@ -1,4 +1,4 @@
-from menu import menu
+from .menu import menu
 
 running = True
 while running:
