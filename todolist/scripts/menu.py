@@ -1,5 +1,5 @@
-from datetime import timedelta
-from .taskfunctions import *
+from datetime import datetime, timedelta
+from .taskfunctions import add_task, delete_task, get_tasks
 
 
 def menu():
@@ -43,17 +43,22 @@ def menu():
         print("All tasks:")
         all_tasks = get_tasks()
         all_tasks.sort(key=lambda elem: elem.deadline)
-        for num, task in enumerate(all_tasks):
-            print(f"{num+1}. {task}. {task.deadline.day} {task.deadline.strftime('%b')}")
-        print("")
+        if len(all_tasks) == 0:
+            print("Nothing to do!\n")
+        else:
+            for num, task in enumerate(all_tasks):
+                print(f"{num+1}. {task}. {task.deadline.day} {task.deadline.strftime('%b')}")
+            print("")
 
     elif select == '4':
-        all_tasks = get_tasks(datetime.today(), before=True)
-        all_tasks.sort(key=lambda elem: elem.deadline)
+        missed_tasks = get_tasks(datetime.today(), before=True)
+        missed_tasks.sort(key=lambda elem: elem.deadline)
         print("Missed tasks:")
-        for num, task in enumerate(all_tasks):
+        if len(missed_tasks) == 0:
+            print("Congratulations! No missed tasks!\n")
+        for num, task in enumerate(missed_tasks):
             print(f"{num+1}. {task}. {task.deadline.day} {task.deadline.strftime('%b')}")
-        print("")
+            print("")
 
     elif select == '5':
         new_task = input("Enter task\n")

@@ -1,5 +1,9 @@
-from .menu import menu
+from todolist.scripts.menu import menu
 
-running = True
-while running:
-    running = menu()
+def runapp():
+    running = True
+    while running:
+        running = menu()
+
+if __name__ == "__main__":
+    runapp()
